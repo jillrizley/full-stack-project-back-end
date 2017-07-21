@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 namespace :db do
-  desc 'Load example data from db/examples.rb'
+  desc 'Load example data from db/seeds.rb'
   task examples: :environment do
-    require_relative '../../db/examples'
+    require_relative '../../db/seeds'
   end
 
   unless Rails.env == 'production'
