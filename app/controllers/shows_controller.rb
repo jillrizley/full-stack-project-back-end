@@ -1,4 +1,4 @@
-class ShowsController < ApplicationController
+class ShowsController < ProtectedController
   before_action :set_show, only: [:show, :update, :destroy]
 
   # GET /shows

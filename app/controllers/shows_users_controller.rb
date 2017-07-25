@@ -1,9 +1,9 @@
-class ShowsUsersController < ApplicationController
+class ShowsUsersController < ProtectedController
   before_action :set_shows_user, only: [:show, :update, :destroy]
 
   # GET /shows_users
   def index
-    @shows_users = ShowsUsers.all
+    @shows_users = current_user.shows
 
     render json: @shows_users
   end
@@ -15,7 +15,7 @@ class ShowsUsersController < ApplicationController
 
   # POST /shows_users
   def create
-    @shows_user = ShowsUsers.new(shows_user_params)
+    @shows_user = current_user.shows_users.build(shows_user_params)
 
     if @shows_user.save
       render json: @shows_user, status: :created, location: @shows_user
@@ -33,30 +33,31 @@ class ShowsUsersController < ApplicationController
     end
   end
 
-  def markattended
-    if (current_user)
-      record = ShowsUser.where('user_id = ? and show_id = ?', current_user.id, params[:show_id])
-      record.first.attended = true
-      record.first.save
-      render json: record
-    else
-      head :unauthorized
-      end
-    end
+  # def markattended
+  #   if (current_user)
+  #     record = ShowsUser.where('user_id = ? and show_id = ?', current_user.id, params[:show_id])
+  #     record.first.attended = true
+  #     record.first.save
+  #     render json: record
+  #   else
+  #     head :unauthorized
+  #     end
+  #   end
 
   # DELETE /shows_users/1
   def destroy
     @shows_user.destroy
+
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_shows_user
-      @shows_user = ShowsUsers.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def shows_user_params
-      params.require(:shows_user).permit(:user_id, :show_id)
-    end
+  def set_shows_user
+    @shows_user = current_user.shows_users.find(params[:id])
+  end
+
+  def shows_user_params
+    params.require(:shows_user).permit(:text, :show_id, :user_id)
+  end
 end
