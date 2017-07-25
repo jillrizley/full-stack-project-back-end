@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   # delete '/shows/:id' 'articles#destroy'
   resources :users, only: [:index, :show]
   resources :shows, except: [:new, :edit]
+  resources :shows_users, except: [:new, :edit]
 end
