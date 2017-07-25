@@ -1,4 +1,4 @@
-class UserShow < ApplicationRecord
+class ShowsUser < ApplicationRecord
   belongs_to :user
   belongs_to :show
 end

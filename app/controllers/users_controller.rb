@@ -53,6 +53,45 @@ class UsersController < ProtectedController
     render json: user
   end
 
+  # GET '/my-shows'
+  def getshows
+    if (current_user)
+      render json: current_user.shows
+    else
+      head :unauthorized
+    end
+  end
+
+  # POST '/add-show'
+  # def addshow
+  #   if (current_user)
+  #     @event = Show.find(params[:show_id])
+  #     @current_user.shows.create(@event)
+  #   else
+  #     head :unauthorized
+  #   end
+  # end
+  #
+  # def removeshow
+  #   if (current_user)
+  #     @event = Show.find(params[:show_id])
+  #     @current_user.shows.delete(@event)
+  #   else
+  #     head :unauthorized
+  #   end
+  # end
+
+  def markattended
+    if (current_user)
+      record = ShowsUser.where("user_id = ? and show_id = ?", current_user.id, params[:show_id])
+      record.first.attended = true
+      record.first.save
+      render json: record
+    else
+      head :unauthorized
+    end
+  end
+
   def update
     head :bad_request
   end

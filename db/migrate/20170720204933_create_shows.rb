@@ -5,7 +5,6 @@ class CreateShows < ActiveRecord::Migration[5.0]
       t.date :date
       t.integer :start_time
       t.integer :end_time
-
       t.timestamps
     end
   end
