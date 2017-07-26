@@ -47,8 +47,12 @@ class ShowsUsersController < ProtectedController
   # DELETE /shows_users/1
   def destroy
     @shows_user.destroy
+    # if @shows_user.destroy
 
-    head :no_content
+      # head :no_content
+    # else
+    #   render json: @shows_user.errors, status: :unprocessable_entity
+    # end
   end
 
   private
@@ -60,4 +64,6 @@ class ShowsUsersController < ProtectedController
   def shows_user_params
     params.require(:shows_user).permit(:text, :show_id, :user_id)
   end
+
+  private :set_shows_user, :shows_user_params
 end
