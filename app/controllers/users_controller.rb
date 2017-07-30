@@ -81,16 +81,6 @@ class UsersController < ProtectedController
   #   end
   # end
 
-  def markattended
-    if (current_user)
-      record = ShowsUser.where("user_id = ? and show_id = ?", current_user.id, params[:show_id])
-      record.first.attended = true
-      record.first.save
-      render json: record
-    else
-      head :unauthorized
-    end
-  end
 
   def update
     head :bad_request
