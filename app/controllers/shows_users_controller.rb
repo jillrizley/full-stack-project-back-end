@@ -46,6 +46,7 @@ class ShowsUsersController < ProtectedController
 
   # DELETE /shows_users/1
   def destroy
+    binding.pry
     @shows_user.destroy
     # if @shows_user.destroy
 
@@ -54,6 +55,9 @@ class ShowsUsersController < ProtectedController
     #   render json: @shows_user.errors, status: :unprocessable_entity
     # end
   end
+
+  #delete show from shows_user upon click
+
 
   private
 

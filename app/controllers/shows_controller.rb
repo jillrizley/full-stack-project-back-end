@@ -4,8 +4,18 @@ class ShowsController < ProtectedController
   # GET /shows
   def index
     @shows = Show.all
-
-    render json: @shows
+    current_user_shows = @current_user.shows.pluck(:id)
+    @show_list = []
+    if current_user_shows.length > 0
+      @shows.each do |show|
+        if current_user_shows.include?(show.id) != true
+          @show_list << show
+        end
+      end
+    else
+      @show_list = @shows
+    end
+    render json: @show_list
   end
 
   # GET /shows/1
@@ -38,7 +48,6 @@ class ShowsController < ProtectedController
   # DELETE /shows/1
   def destroy
     @show.destroy
-
     head :no_content
   end
 
