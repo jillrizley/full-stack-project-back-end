@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :shows, except: [:new, :edit]
   resources :shows_users, except: [:new, :edit]
+  delete '/remove_show/:show_id' => 'users#remove_show'
 end

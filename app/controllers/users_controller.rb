@@ -53,13 +53,12 @@ class UsersController < ProtectedController
     render json: user
   end
 
-  # GET '/my-shows'
-  def getshows
-    if (current_user)
-      render json: current_user.shows
-    else
-      head :unauthorized
-    end
+
+  def remove_show
+    user_id = @current_user.id
+    show_id = params[:show_id]
+    show = ShowsUser.find_by(user_id: user_id, show_id: show_id)
+    show.destroy
   end
 
   # POST '/add-show'

@@ -1,6 +1,5 @@
 class ShowsUsersController < ProtectedController
   before_action :set_shows_user, only: [:show, :update, :destroy]
-
   # GET /shows_users
   def index
     @shows_users = current_user.shows
@@ -46,7 +45,6 @@ class ShowsUsersController < ProtectedController
 
   # DELETE /shows_users/1
   def destroy
-    binding.pry
     @shows_user.destroy
     # if @shows_user.destroy
 
