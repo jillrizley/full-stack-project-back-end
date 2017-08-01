@@ -60,6 +60,6 @@ class ShowsController < ProtectedController
 
     # Only allow a trusted parameter "white list" through.
     def show_params
-      params.require(:show).permit(:artist, :date, :start_time, :end_time)
+      params.require(:show).permit(:artist, :date, :start_time, :end_time, :venue)
     end
 end

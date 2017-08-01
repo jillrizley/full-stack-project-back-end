@@ -61,25 +61,6 @@ class UsersController < ProtectedController
     show.destroy
   end
 
-  # POST '/add-show'
-  # def addshow
-  #   if (current_user)
-  #     @event = Show.find(params[:show_id])
-  #     @current_user.shows.create(@event)
-  #   else
-  #     head :unauthorized
-  #   end
-  # end
-  #
-  # def removeshow
-  #   if (current_user)
-  #     @event = Show.find(params[:show_id])
-  #     @current_user.shows.delete(@event)
-  #   else
-  #     head :unauthorized
-  #   end
-  # end
-
 
   def update
     head :bad_request
