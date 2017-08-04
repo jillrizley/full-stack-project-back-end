@@ -2,8 +2,18 @@ class ShowsUsersController < ProtectedController
   before_action :set_shows_user, only: [:show, :update, :destroy]
   # GET /shows_users
   def index
-    @shows_users = current_user.shows
+ @shows_users = current_user.shows
 
+
+    # shows_users = current_user.shows_users
+    # shows = current_user.shows
+    # @shows_users = []
+    # shows.each do |show|
+    #   attended = shows_users.find_by(show_id: show.id).attended
+    #   show = show.as_json(:root => true)
+    #   show.merge!(attended: attended)
+    #   @shows_users << show
+    # end
     render json: @shows_users
   end
 
@@ -32,16 +42,18 @@ class ShowsUsersController < ProtectedController
     end
   end
 
+
+# attended update
+# update to true boolean statement
+# remove remove show button
+# change attended to color or Attended!
+# not be able to click the button again
+
   # def markattended
   #   if (current_user)
   #     record = ShowsUser.where('user_id = ? and show_id = ?', current_user.id, params[:show_id])
   #     record.first.attended = true
-  #     record.first.save
-  #     render json: record
-  #   else
-  #     head :unauthorized
-  #     end
-  #   end
+
 
   # DELETE /shows_users/1
   def destroy
