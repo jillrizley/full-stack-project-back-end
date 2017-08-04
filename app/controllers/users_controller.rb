@@ -62,8 +62,10 @@ class UsersController < ProtectedController
   end
 
 
-  def update
-    head :bad_request
+  def attended_show
+    show_id = params[:show_id]
+    user_show = current_user.shows_users.find_by(show_id: show_id)
+    user_show.update(attended: true)
   end
 
   private

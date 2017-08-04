@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/sign-in' => 'users#signin'
   delete '/sign-out/:id' => 'users#signout'
   patch '/change-password/:id' => 'users#changepw'
+  patch '/attended_show/:show_id' => 'users#attended_show'
   resources :users, only: [:index, :show]
   resources :shows, except: [:new, :edit]
   resources :shows_users, except: [:new, :edit]
