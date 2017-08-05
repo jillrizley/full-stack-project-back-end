@@ -4,7 +4,6 @@ class ShowsUsersController < ProtectedController
   def index
  @shows_users = current_user.shows
 
-
     # shows_users = current_user.shows_users
     # shows = current_user.shows
     # @shows_users = []
@@ -42,31 +41,10 @@ class ShowsUsersController < ProtectedController
     end
   end
 
-
-# attended update
-# update to true boolean statement
-# remove remove show button
-# change attended to color or Attended!
-# not be able to click the button again
-
-  # def markattended
-  #   if (current_user)
-  #     record = ShowsUser.where('user_id = ? and show_id = ?', current_user.id, params[:show_id])
-  #     record.first.attended = true
-
-
   # DELETE /shows_users/1
   def destroy
     @shows_user.destroy
-    # if @shows_user.destroy
-
-      # head :no_content
-    # else
-    #   render json: @shows_user.errors, status: :unprocessable_entity
-    # end
   end
-
-  #delete show from shows_user upon click
 
 
   private
